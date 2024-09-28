@@ -4,7 +4,7 @@ import Announcements from '../assets/Components/announcements'
 import FCHSLogo from '../assets/Photos/FCHSLogo.png'
 import '../App.css'
 
-export default function home() {
+export default function home({announcements}) {
     const [day, setDay] = useState(null)
 
     useEffect(() => {
@@ -19,7 +19,7 @@ export default function home() {
   
         <div id='bellschedule'>
           <h2>Bell Schedule</h2>
-          {[1, 2, 6].includes(day) ?
+          {[1, 2, 5].includes(day) ?
             <>
               <p>Period 1: 7:45 AM - 8:31 AM</p>
               <p>Period 2: 8:36 AM - 9:22 AM</p>
@@ -59,7 +59,7 @@ export default function home() {
             </>}
         </div>
 
-        {/* <Announcements /> */}
+        <Announcements announcements={announcements} />
         
       </>
     )

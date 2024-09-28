@@ -16,7 +16,7 @@ body {
 .FCHSLogo {
   position: absolute;
   width: 8vw;
-  top: 5vh;
+  top: 3vh;
   right: 5vh;  
 }
 
@@ -26,37 +26,37 @@ h1 {
 }
 
 h2 {
-  font-size: 2vw;
+  font-size: 2.5vw;
 }
 
 #time{
-  height: 30vh;
+  height: 20vh;
   width: 35vw;
   font-size: 6vw;
   margin: auto;
   text-align: center;
   background: white;
-  color: #2d3bdb;
+  color: rgb(55, 84, 165);
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 3vw;
-  margin-top: 5vh;
+  margin-top: 3vh;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 15px 45px;
 }
 
 #bellschedule{
   position: absolute;
-  top: 5vh;
+  top: 3vh;
   left: 5vw;
-  width: 20vw; 
+  width: 25vw; 
   height: fit-content;
   background: white;
-  color: #2d3bdb;
+  color: rgb(55, 84, 165);
   text-align: center;
   padding: 2vw;
   border-radius: 3vw;
-  font-size: 1.1vw;
+  font-size: 1.4vw;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 15px 45px;
 
 }
@@ -70,10 +70,20 @@ h2 {
   flex-direction: column;
   justify-content: center;
   background: white;
-  color: #2d3bdb;
+  color: rgb(55, 84, 165);
+  font-size: 1.4vw;
   border-radius: 3vw;
   margin-top: 5vh;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 15px 45px;
+}
+
+.announcement-form{
+  width: 80vw;
+  text-align: center;
+  margin: auto;
+  margin-top: 10vh;
 }
 
 
