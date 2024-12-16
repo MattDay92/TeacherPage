@@ -54,14 +54,14 @@ Announcement.init(
         text: {
             type: DataTypes.STRING,
         },
-        userId: {
+        userID: {
             type: DataTypes.STRING,
             allowNull: false,
         },
     },
     {
         sequelize,
-        modelName: 'Annoucement',
+        modelName: 'Announcement',
     }
     
 )
@@ -116,6 +116,52 @@ app.get('/api/Users/:userID', async (req, res) => {
     }
 });
 
+app.post('/api/Announcement', async (req, res) => {
+    try {
+        const {text, userID} = req.body;
+        const announcement = await Announcement.create({text, userID})
+        res.status(201).json(announcement);  
+    } catch (err) {
+        res.status(500).json({error: err.message});
+    }
+})
+
+app.get('/api/Announcement/:userID', async (req, res) => {
+    try{
+        const specificUserAnnouncements = await Announcement.findAll({
+            where: {
+                userID: req.params.userID
+            }
+        });
+
+        if (specificUserAnnouncements) {
+            res.json({ announcements: specificUserAnnouncements})
+        } else {
+            res.status(404).json({message: 'Announcements Not Found'})
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+
+    }
+})
+
+app.post('/api/Announcement/delete/:userID', async (req, res) => {
+    try {
+        const { id } = req.body;
+        const AnnouncementToDelete = await Announcement.destroy({
+            where: {
+                userID: req.params.userID,
+                id: id
+            }
+        })
+
+        res.json({
+            message: 'Announcement successfully removed.'
+        })
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+})
 
 const PORT = 3001;
 app.listen(PORT, () => {
