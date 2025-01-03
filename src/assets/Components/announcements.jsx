@@ -2,19 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { getDatabase, ref, set, onValue } from 'firebase/database'
 
 
-export default function announcements({ announcements }) {
+export default function Announcements({ announcements }) {
 
     return (
         <div id='announcements'>
             <h2>Announcements</h2>
             <div>
-                {announcements ? (
-                    Object.entries(announcements).map(([key, announcementObj], index) => (
-                        <div key={key}>
-                            <p>{announcementObj.announcement}</p>
-                        </div>
-                    ))
-                ) : (
+                {announcements ? <>
+                    {announcements.map(i => <p key={i.id}>{i.text}</p>)}
+                    </>
+                 : (
                     <p>No announcements available</p>
                 )}
             </div>

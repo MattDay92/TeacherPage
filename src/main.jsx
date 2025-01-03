@@ -4,6 +4,8 @@ import App from './App.jsx'
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getDatabase } from "firebase/database";
+import { GoogleAuthProvider } from "firebase/auth";
+
 
 
 const firebaseConfig = {
@@ -20,6 +22,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const database = getDatabase(app);
+const provider = new GoogleAuthProvider();
 
 
 createRoot(document.getElementById('root')).render(

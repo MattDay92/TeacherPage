@@ -7,6 +7,8 @@ import '../App.css'
 export default function home({announcements}) {
     const [day, setDay] = useState(null)
 
+    
+
     useEffect(() => {
       setDay(new Date().getDay())
     }, [])

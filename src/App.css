@@ -16,7 +16,7 @@ body {
 .FCHSLogo {
   position: absolute;
   width: 8vw;
-  top: 3vh;
+  top: 5vh;
   right: 5vh;  
 }
 
@@ -27,6 +27,39 @@ h1 {
 
 h2 {
   font-size: 2.5vw;
+}
+
+.signinbtn, .signinbtn:hover{
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgb(55, 84, 165);
+}
+
+.userIMG {
+  position: absolute;
+  top: 1vh;
+  right: 1vw;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.dropdown {
+  position: absolute;
+  right: 1vw !important;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 5vh !important;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.dropdown-item:hover {
+  cursor: pointer;
+  background: rgb(55, 84, 165);
+  color: white;
 }
 
 #time{
@@ -41,13 +74,13 @@ h2 {
   justify-content: center;
   align-items: center;
   border-radius: 3vw;
-  margin-top: 3vh;
+  margin-top: 5vh;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 15px 45px;
 }
 
 #bellschedule{
   position: absolute;
-  top: 3vh;
+  top: 5vh;
   left: 5vw;
   width: 25vw; 
   height: fit-content;
@@ -58,7 +91,6 @@ h2 {
   border-radius: 3vw;
   font-size: 1.4vw;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 15px 45px;
-
 }
 
 #announcements {

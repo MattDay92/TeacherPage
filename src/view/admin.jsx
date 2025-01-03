@@ -1,25 +1,55 @@
 import React from 'react'
-import { getDatabase, push, ref, remove, set } from "firebase/database";
 
 
-export default function admin({ announcements }) {
+export default function admin({ user, announcements, setAnnouncements, getAnnouncements }) {
 
-    const addAnnouncement = (event) => {
+    const backendURL = import.meta.env.VITE_BACKENDURL
+
+    const addAnnouncement = async (event) => {
         event.preventDefault()
-        const db = getDatabase();
+        const reqBody = {
+            text: event.target.announcement.value,
+            userID: user.uid
+        }
 
-        const announcement = event.target.announcement.value
+        console.log(reqBody)
 
-        set(push(ref(db, 'announcement')), {
-            announcement
-        })
+        try {
+            const response = await fetch(`${backendURL}/api/Announcement`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(reqBody),
+            })
+
+            getAnnouncements()
+        } catch (error) {
+            console.error(error)
+        }
     }
 
-    const deleteAnnouncement = (key) => {
+    const deleteAnnouncement = async (id) => {
 
-        const db = getDatabase();
+        const reqBody = {
+            id: id
+        }
 
-        remove(ref(db, `announcement/${key}`))
+        console.log(reqBody)
+
+        try {
+            const response = await fetch(`${backendURL}/api/Announcement/delete/${user.uid}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(reqBody),
+            })
+
+            getAnnouncements()
+        } catch (error) {
+            console.error(error)
+        }
     }
 
 
@@ -33,18 +63,15 @@ export default function admin({ announcements }) {
             <div id='announcements'>
                 <h2>Announcements</h2>
                 <div>
-                    {announcements ? (
-                        Object.entries(announcements).map(([key, announcementObj], index) => (
-                            <div key={key}>
-                                <p>{announcementObj.announcement}</p>
-                                <button onClick={() => deleteAnnouncement(key)} className='btn btn-sm mb-2 btn-danger'>
-                                    Delete
-                                </button>
-                            </div>
-                        ))
-                    ) : (
-                        <p>No announcements available</p>
-                    )}
+                    {announcements && announcements.length > 0 ? <>
+                        {announcements.map(i => <>
+                            <p key={i.id}>{i.text}</p>
+                            <btn onClick={() => { deleteAnnouncement(i.id) }} className='btn btn-sm btn-danger'>Delete</btn>
+                        </>)}
+                    </>
+                        : (
+                            <p>No announcements available</p>
+                        )}
                 </div>
             </div>
         </div>
