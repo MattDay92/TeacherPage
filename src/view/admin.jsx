@@ -1,7 +1,7 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 
 
-export default function admin({ user, announcements, setAnnouncements, getAnnouncements }) {
+export default function admin({ user, showSchedule, changeShowSchedule, announcements, setAnnouncements, getAnnouncements }) {
 
     const backendURL = import.meta.env.VITE_BACKENDURL
 
@@ -74,6 +74,15 @@ export default function admin({ user, announcements, setAnnouncements, getAnnoun
                         )}
                 </div>
             </div>
+
+                        <div className='d-flex justify-content-center my-5'>
+            {showSchedule === 'show' ?
+                <button className='btn btn-primary d-flex ' onClick={() => { changeShowSchedule('hide') }}>Hide Schedule</button>
+                :
+                <button className='btn btn-primary d-flex ' onClick={() => { changeShowSchedule('show') }}>Show Schedule</button>
+            }
+            </div>
+
         </div>
     )
 }

@@ -15,6 +15,7 @@ function App() {
     const savedUser = localStorage.getItem('user');
     return savedUser ? JSON.parse(savedUser) : null;
   });
+  const [showSchedule, setShowSchedule] = useState(localStorage.getItem('schedule'))
 
   const backendURL = import.meta.env.VITE_BACKENDURL
 
@@ -68,6 +69,16 @@ function App() {
     }
   }
 
+  const changeShowSchedule = (change) => {
+    if(change === 'show') {
+      setShowSchedule('show')
+      localStorage.setItem('schedule', change)
+    } else {
+      setShowSchedule('hide')
+      localStorage.setItem('schedule', change)
+    }
+  }
+
   const createUser = async () => {
     const reqBody = {
       userID: user.uid,
@@ -104,9 +115,12 @@ function App() {
   const signOut = () => {
     setUser(null)
     setAnnouncements([])
+    setShowSchedule('show')
     localStorage.removeItem('user')
     localStorage.removeItem('announcements')
+    localStorage.removeItem('schedule')
   }
+
 
   useEffect(() => {
     getAnnouncements()
@@ -140,8 +154,8 @@ function App() {
 
 
       <Routes>
-        <Route path='/' element={<Home announcements={announcements} />} />
-        <Route path='/admin' element={<Admin user={user} announcements={announcements} setAnnouncements={setAnnouncements} getAnnouncements={getAnnouncements} />} />
+        <Route path='/' element={<Home showSchedule={showSchedule} announcements={announcements} />} />
+        <Route path='/admin' element={<Admin user={user} showSchedule={showSchedule} changeShowSchedule={changeShowSchedule} announcements={announcements} setAnnouncements={setAnnouncements} getAnnouncements={getAnnouncements} />} />
       </Routes>
     </BrowserRouter>
   )
